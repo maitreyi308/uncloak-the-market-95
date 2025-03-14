@@ -39,7 +39,7 @@ const NeonButton = forwardRef<HTMLButtonElement, NeonButtonProps>(
             
             // Ghost variant
             "bg-transparent text-white/70 hover:text-white hover:bg-cyber-gray/20": variant === "ghost",
-            "before:bg-white/5": variant === "ghost",
+            "before:bg-white/5": variant === "ghost"
           },
           className
         )}
