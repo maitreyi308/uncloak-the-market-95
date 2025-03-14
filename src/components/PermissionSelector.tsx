@@ -1,10 +1,10 @@
 
-import { Permission, permissionLabels, useCart, CategoryData } from "@/contexts/CartContext";
+import { Permission, permissionLabels, useCart, Category } from "@/contexts/CartContext";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
 interface PermissionSelectorProps {
-  category: CategoryData;
+  category: Category;
   selectedPermissions: Permission[];
   onChange: (permissions: Permission[]) => void;
 }

@@ -18,15 +18,13 @@ export default function CategoryCard({ category, isCompact = false }: CategoryCa
   
   useEffect(() => {
     const newScore = isAdded ? getItemScore(category.id) : 0;
-    setScore(prevScore => {
-      if (prevScore !== newScore) {
-        setAnimateValue(true);
-        const timer = setTimeout(() => setAnimateValue(false), 1000);
-        return () => clearTimeout(timer);
-      }
-      return newScore;
-    });
-  }, [isAdded, category.id, getItemScore]);
+    if (score !== newScore) {
+      setScore(newScore);
+      setAnimateValue(true);
+      const timer = setTimeout(() => setAnimateValue(false), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isAdded, category.id, getItemScore, score]);
   
   const handleToggleCart = () => {
     if (isAdded) {

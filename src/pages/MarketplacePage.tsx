@@ -1,13 +1,20 @@
 
 import { useMemo } from "react";
-import { categoryData } from "@/contexts/CartContext";
+import { Link } from "react-router-dom";
+import { categoryData, useCart } from "@/contexts/CartContext";
 import CategoryCard from "@/components/ui/CategoryCard";
 import GlitchHeading from "@/components/ui/GlitchHeading";
+import NeonButton from "@/components/ui/NeonButton";
+import { ShoppingCart } from "lucide-react";
 
 export default function MarketplacePage() {
+  const { items } = useCart();
+  
   const sortedCategories = useMemo(() => {
     return [...categoryData].sort((a, b) => b.baseWeight - a.baseWeight);
   }, []);
+  
+  const hasItemsInCart = items.length > 0;
   
   return (
     <div className="animate-fade-in">
@@ -21,11 +28,26 @@ export default function MarketplacePage() {
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-12">
         {sortedCategories.map(category => (
           <CategoryCard key={category.id} category={category} />
         ))}
       </div>
+      
+      {hasItemsInCart && (
+        <div className="mt-8 flex justify-center">
+          <Link to="/summary">
+            <NeonButton 
+              variant="primary" 
+              size="lg"
+              className="flex items-center gap-2"
+            >
+              <ShoppingCart size={20} /> 
+              Checkout
+            </NeonButton>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

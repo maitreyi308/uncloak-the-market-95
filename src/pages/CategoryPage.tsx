@@ -5,7 +5,7 @@ import { categoryData, Permission, useCart } from "@/contexts/CartContext";
 import GlitchHeading from "@/components/ui/GlitchHeading";
 import NeonButton from "@/components/ui/NeonButton";
 import PermissionSelector from "@/components/PermissionSelector";
-import { ArrowLeft, ShoppingCart, Check } from "lucide-react";
+import { ArrowLeft, ShoppingCart, Check, ArrowRight } from "lucide-react";
 
 export default function CategoryPage() {
   const { id } = useParams<{ id: string }>();
@@ -70,6 +70,22 @@ export default function CategoryPage() {
       addToCart(category);
       updatePermissions(category.id, selectedPermissions);
     }
+  };
+  
+  const handleDone = () => {
+    if (!category) return;
+    
+    // If not already in cart, add it
+    if (!isAdded) {
+      addToCart(category);
+      updatePermissions(category.id, selectedPermissions);
+    } else {
+      // If already in cart, just update permissions
+      updatePermissions(category.id, selectedPermissions);
+    }
+    
+    // Navigate back to marketplace
+    navigate('/marketplace');
   };
   
   if (!category) return null;
@@ -156,6 +172,16 @@ export default function CategoryPage() {
             selectedPermissions={selectedPermissions}
             onChange={handlePermissionsChange}
           />
+          
+          <div className="mt-6 flex justify-center">
+            <NeonButton 
+              variant="primary" 
+              onClick={handleDone}
+              className="w-full flex items-center justify-center gap-2"
+            >
+              Done <ArrowRight size={16} />
+            </NeonButton>
+          </div>
         </div>
       </div>
     </div>
