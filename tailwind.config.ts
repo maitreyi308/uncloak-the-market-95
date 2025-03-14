@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,15 +53,17 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				cyber: {
+					'black': '#0D0D0D',
+					'dark': '#151515',
+					'gray': '#1F1F1F',
+					'neon': '#00F0FF',
+					'purple': '#7000FF',
+					'pink': '#F81CE5',
+					'red': '#FF2D55',
+					'green': '#25D366',
+					'blue': '#0070F3',
+					'yellow': '#FFCC00',
 				}
 			},
 			borderRadius: {
@@ -84,11 +87,39 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'pulse-neon': {
+					'0%, 100%': { 
+						boxShadow: '0 0 5px rgba(0, 240, 255, 0.7), 0 0 10px rgba(0, 240, 255, 0.5)' 
+					},
+					'50%': { 
+						boxShadow: '0 0 15px rgba(0, 240, 255, 0.9), 0 0 20px rgba(0, 240, 255, 0.7)' 
+					},
+				},
+				'glitch': {
+					'0%, 100%': { transform: 'translate(0)' },
+					'20%': { transform: 'translate(-2px, 2px)' },
+					'40%': { transform: 'translate(-2px, -2px)' },
+					'60%': { transform: 'translate(2px, 2px)' },
+					'80%': { transform: 'translate(2px, -2px)' },
+				},
+				'scanline': {
+					'0%': { transform: 'translateY(-100%)' },
+					'100%': { transform: 'translateY(100%)' },
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-neon': 'pulse-neon 2s infinite',
+				'glitch': 'glitch 0.5s ease-in-out infinite',
+				'glitch-slow': 'glitch 3s ease-in-out infinite',
+				'scanline': 'scanline 8s linear infinite',
+				'fade-in': 'fade-in 0.5s ease-out',
 			}
 		}
 	},
